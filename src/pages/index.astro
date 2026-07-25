@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const categoryNames: Record<string, string> = {
+  'nghe-cx': 'Chuyện nghề CX',
+  'tai-chinh': 'Tài chính cá nhân',
+  'chuyen-doi': 'Chuyện đời',
+};
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('vi-VN', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title="Luân viết — chuyện nghề, chuyện tiền, chuyện đời">
+  <p class="intro">
+    Chuyện nghề chăm sóc khách hàng, tài chính cá nhân và những điều học được
+    trên quãng đường giữa Sài Gòn và Nha Trang.
+  </p>
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <article>
+          <p class="meta">
+            <span class="cat">{categoryNames[post.data.category]}</span>
+            <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+          </p>
+          <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+          <p class="desc">{post.data.description}</p>
+        </article>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .intro {
+    color: var(--ink-soft);
+    max-width: 34rem;
+    margin: 0.5rem 0 2.5rem;
+  }
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .post-list li + li {
+    margin-top: 2.25rem;
+    padding-top: 2.25rem;
+    border-top: 1px solid var(--line);
+  }
+  .meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 0.25rem;
+  }
+  .cat {
+    color: var(--sea-deep);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.75rem;
+  }
+  h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.45rem;
+  }
+  h2 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  h2 a:hover { color: var(--sea-deep); }
+  .desc { margin: 0; color: var(--ink-soft); }
+</style>
