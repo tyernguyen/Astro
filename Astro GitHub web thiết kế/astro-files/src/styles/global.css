@@ -1,0 +1,88 @@
+/* Tyertrover — global.css (phong cách Modernist: Archivo, đỏ trên trắng, đường kẻ 2px, không bo góc) */
+:root {
+  --bg: #f3f2f2;
+  --text: #201e1d;
+  --accent: #ec3013;
+  --accent-dark: #b02007;
+  --accent-tint: #fde5e0;
+  --muted: #7a7674;
+  --divider: #201e1d;
+  --code-bg: #e6e4e3;
+  --font: 'Archivo', system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 17px; line-height: 1.7; }
+a { color: var(--text); text-decoration: none; }
+a:hover { color: var(--accent-dark); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+::selection { background: var(--accent-tint); }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* Header / footer */
+.site-header { border-bottom: 2px solid var(--divider); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { font-weight: 800; font-size: 18px; letter-spacing: 0.04em; text-transform: uppercase; }
+.brand .dot { color: var(--accent); }
+.site-nav { display: flex; gap: 32px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.site-footer { border-top: 2px solid var(--divider); margin-top: 64px; }
+.site-footer .wrap { display: flex; justify-content: space-between; padding-top: 20px; padding-bottom: 20px; font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Trang chủ */
+.hero { border-bottom: 2px solid var(--divider); padding: 64px 0; }
+.kicker { margin: 0 0 16px 0; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-dark); }
+.hero h1 { margin: 0; font-weight: 800; font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.01em; max-width: 18ch; }
+.hero p { margin: 20px 0 0 0; font-size: 17px; color: #55514f; max-width: 62ch; }
+.cats { border-bottom: 2px solid var(--divider); }
+.cats .wrap { display: flex; gap: 12px; align-items: center; padding-top: 16px; padding-bottom: 16px; }
+.cats-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.tag { display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border: 2px solid var(--divider); white-space: nowrap; }
+.tag-accent { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
+.post-row { display: grid; grid-template-columns: 160px 1fr auto; gap: 32px; padding: 40px 0; border-bottom: 2px solid var(--divider); align-items: baseline; }
+.post-row .date { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.post-row h2 { margin: 0; font-weight: 700; font-size: 24px; line-height: 1.2; }
+.post-row h2 a:hover { color: var(--accent-dark); }
+.post-row .desc { margin: 12px 0 0 0; font-size: 15px; color: #55514f; max-width: 58ch; text-wrap: pretty; }
+.post-row .meta { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.read-time { font-size: 13px; color: var(--muted); }
+
+/* Trang bài viết */
+.back-link { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-dark); }
+.post-head { margin-top: 24px; padding-bottom: 24px; border-bottom: 2px solid var(--divider); }
+.post-head h1 { margin: 16px 0 0 0; font-weight: 800; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; max-width: 24ch; }
+.post-head .meta { margin: 16px 0 0 0; font-size: 14px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.post-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; margin-top: 40px; align-items: start; }
+.toc { position: sticky; top: 24px; }
+.toc-title { margin: 0 0 12px 0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.toc nav { display: flex; flex-direction: column; gap: 8px; border-left: 2px solid var(--divider); padding-left: 16px; }
+.toc a { font-size: 14px; font-weight: 600; line-height: 1.4; }
+.toc .depth-3 { padding-left: 12px; font-weight: 400; }
+@media (max-width: 860px) {
+  .post-layout { grid-template-columns: 1fr; }
+  .toc { position: static; }
+  .post-row { grid-template-columns: 1fr; gap: 8px; }
+}
+
+/* Nội dung Markdown */
+.prose { max-width: 66ch; }
+.prose h2 { font-weight: 700; font-size: 24px; margin: 40px 0 16px 0; line-height: 1.25; }
+.prose h3 { font-weight: 700; font-size: 19px; margin: 32px 0 12px 0; }
+.prose p { margin: 0 0 20px 0; }
+.prose a { color: var(--accent-dark); border-bottom: 2px solid var(--accent); }
+.prose code { background: var(--code-bg); padding: 2px 6px; font-size: 0.88em; }
+.prose pre { background: #201e1d; color: #f3f2f2; padding: 20px; font-size: 14px; line-height: 1.6; overflow-x: auto; margin: 0 0 20px 0; }
+.prose pre code { background: none; padding: 0; }
+.prose blockquote { margin: 24px 0; padding: 16px 20px; border-left: 4px solid var(--accent); background: var(--accent-tint); }
+.prose blockquote p { margin: 0; }
+.prose ul, .prose ol { margin: 0 0 20px 0; padding-left: 24px; }
+.prose li { margin-bottom: 8px; }
+.prose img { max-width: 100%; filter: grayscale(1); }
+.prose hr { border: none; border-top: 2px solid var(--divider); margin: 32px 0; }
+.prose table { border-collapse: collapse; width: 100%; margin: 0 0 20px 0; font-size: 15px; }
+.prose th { text-align: left; border-bottom: 2px solid var(--divider); padding: 8px 12px 8px 0; text-transform: uppercase; font-size: 13px; letter-spacing: 0.06em; }
+.prose td { border-bottom: 1px solid #c9c6c4; padding: 8px 12px 8px 0; }
+
+/* Banner đỏ cuối trang */
+.poster { background: var(--accent); color: #fff; }
+.poster .wrap { padding-top: 48px; padding-bottom: 48px; }
+.poster p { margin: 0; font-weight: 800; font-size: clamp(24px, 3vw, 36px); line-height: 1.15; max-width: 26ch; }

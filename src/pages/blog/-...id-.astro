@@ -1,0 +1,45 @@
+---
+// src/pages/blog/[...id].astro — trang bài viết, có mục lục + thời gian đọc
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const CATEGORY_LABELS = { 'nghe-cx': 'Nghề CX', 'tai-chinh': 'Tài chính', 'chuyen-doi': 'Chuyển đổi' };
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const words = (post.body || '').split(/\s+/).filter(Boolean).length;
+const readTime = Math.max(1, Math.round(words / 200)) + ' phút đọc';
+const date = post.data.pubDate.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replaceAll('/', '.');
+---
+<Base title={post.data.title + ' — Tyertrover'} description={post.data.description}>
+  <main>
+    <div class="wrap" style="padding-top: 40px; padding-bottom: 64px;">
+      <a href="/" class="back-link">← Tất cả bài viết</a>
+      <div class="post-head">
+        <span class="tag tag-accent">{CATEGORY_LABELS[post.data.category]}</span>
+        <h1>{post.data.title}</h1>
+        <p class="meta">{date} · {readTime}</p>
+      </div>
+      <div class="post-layout">
+        <aside class="toc">
+          <p class="toc-title">Mục lục</p>
+          {toc.length > 0 ? (
+            <nav>
+              {toc.map((h) => <a href={'#' + h.slug} class={'depth-' + h.depth}>{h.text}</a>)}
+            </nav>
+          ) : (
+            <p style="margin:0; font-size:13px; color:var(--muted); border-left:2px solid var(--divider); padding-left:16px;">Bài ngắn — không có mục lục.</p>
+          )}
+        </aside>
+        <article class="prose">
+          <Content />
+        </article>
+      </div>
+    </div>
+  </main>
+</Base>
