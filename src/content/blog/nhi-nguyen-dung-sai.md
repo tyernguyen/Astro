@@ -3,7 +3,7 @@ title: "Khi mình thôi hỏi 'đúng hay sai?'"
 description: "Chuyện về thói quen chia thế giới làm đôi — và điều mình thấy được khi chịu nhìn thêm một góc nữa."
 pubDate: 2026-07-25
 category: "chuyen-doi"
-draft: true
+draft: false
 ---
 
 <!-- GỢI Ý THAY BẰNG CHUYỆN THẬT CỦA LUÂN:
