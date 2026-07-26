@@ -1,0 +1,25 @@
+name: Rebuild for scheduled posts
+
+# Site là static (Astro), chỉ build lại khi có git push. Bài viết hẹn giờ
+# đăng (pubDate ở tương lai) sẽ không tự lên sóng đúng giờ nếu không có
+# ai build lại site sau thời điểm đó. Workflow này gọi Cloudflare Pages
+# Deploy Hook mỗi giờ để tự build lại, giúp bài hẹn giờ lên đúng giờ
+# (sai số tối đa ~1 giờ).
+#
+# Cách bật:
+# 1. Cloudflare Pages dashboard → project này → Settings → Builds &
+#    deployments → Deploy hooks → tạo hook mới, copy URL.
+# 2. Vào GitHub repo → Settings → Secrets and variables → Actions →
+#    New repository secret → tên CF_DEPLOY_HOOK_URL, dán URL vừa copy.
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Cloudflare Pages deploy hook
+        run: curl -fsS -X POST "${{ secrets.CF_DEPLOY_HOOK_URL }}"
