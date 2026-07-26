@@ -38,6 +38,9 @@ a:hover { color: var(--accent-dark); }
 .cats-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
 .tag { display: inline-block; padding: 4px 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border: 2px solid var(--divider); white-space: nowrap; }
 .tag-accent { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
+.filter-tag { appearance: none; background: none; color: var(--text); font-family: inherit; cursor: pointer; }
+.filter-tag:hover { border-color: var(--accent); color: var(--accent-dark); }
+.empty-state { padding: 40px 0; color: var(--muted); }
 .post-row { display: grid; grid-template-columns: 160px 1fr auto; gap: 32px; padding: 40px 0; border-bottom: 2px solid var(--divider); align-items: baseline; }
 .post-row .date { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .post-row h2 { margin: 0; font-weight: 700; font-size: 24px; line-height: 1.2; }
