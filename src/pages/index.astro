@@ -28,13 +28,16 @@ function fmtDate(d) {
     <section class="cats">
       <div class="wrap">
         <span class="cats-label">Chuyên mục</span>
-        {Object.values(CATEGORY_LABELS).map((label) => <span class="tag">{label}</span>)}
+        <button type="button" class="tag filter-tag tag-accent" data-cat="all" aria-pressed="true">Tất cả</button>
+        {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
+          <button type="button" class="tag filter-tag" data-cat={key} aria-pressed="false">{label}</button>
+        ))}
       </div>
     </section>
     <section>
-      <div class="wrap">
+      <div class="wrap" id="post-list">
         {posts.map((post) => (
-          <article class="post-row">
+          <article class="post-row" data-cat={post.data.category}>
             <div class="date">{fmtDate(post.data.pubDate)}</div>
             <div>
               <h2><a href={'/blog/' + post.id + '/'}>{post.data.title}</a></h2>
@@ -46,7 +49,34 @@ function fmtDate(d) {
             </div>
           </article>
         ))}
+        <p class="empty-state" hidden>Chưa có bài viết nào trong chuyên mục này.</p>
       </div>
     </section>
   </main>
 </Base>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-tag');
+  const posts = document.querySelectorAll('.post-row');
+  const emptyState = document.querySelector('.empty-state');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach((b) => {
+        b.classList.remove('tag-accent');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('tag-accent');
+      btn.setAttribute('aria-pressed', 'true');
+
+      const cat = btn.dataset.cat;
+      let visibleCount = 0;
+      posts.forEach((post) => {
+        const match = cat === 'all' || post.dataset.cat === cat;
+        post.hidden = !match;
+        if (match) visibleCount++;
+      });
+      if (emptyState) emptyState.hidden = visibleCount > 0;
+    });
+  });
+</script>

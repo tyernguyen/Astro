@@ -17,7 +17,7 @@ const words = (post.body || '').split(/\s+/).filter(Boolean).length;
 const readTime = Math.max(1, Math.round(words / 200)) + ' phút đọc';
 const date = post.data.pubDate.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replaceAll('/', '.');
 ---
-<Base title={post.data.title + ' — Tyertrover'} description={post.data.description}>
+<Base title={post.data.title + ' — Tyertrovert'} description={post.data.description}>
   <main>
     <div class="wrap" style="padding-top: 40px; padding-bottom: 64px;">
       <a href="/" class="back-link">← Tất cả bài viết</a>
