@@ -1,1 +1,2 @@
-# Wrangler assets ignore file
+_worker.js
+_routes.json

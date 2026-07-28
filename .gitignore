@@ -5,3 +5,10 @@ dist/
 # File thiết kế cục bộ, không cần đưa lên repo
 Astro GitHub web thiết kế/
 Astro GitHub web thiết kế.zip
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
