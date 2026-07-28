@@ -2,8 +2,7 @@
 // src/pages/index.astro — trang chủ: danh sách bài viết
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-
-const CATEGORY_LABELS = { 'nghe-cx': 'Nghề CX', 'tai-chinh': 'Tài chính', 'chuyen-doi': 'Chuyển đổi' };
+import { CATEGORY_LABELS } from '../consts';
 // Hẹn giờ đăng: bài có pubDate ở tương lai sẽ không hiển thị cho tới khi qua ngày đó và site được build lại.
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.pubDate.valueOf() <= Date.now()))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
