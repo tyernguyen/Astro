@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://blog-luan.pages.dev/sitemap-index.xml
+Sitemap: https://astro25072026.tyernguyen.workers.dev/sitemap-index.xml

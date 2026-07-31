@@ -26,23 +26,32 @@ git remote add origin https://github.com/TEN-CUA-LUAN/blog.git
 git push -u origin main
 ```
 
-## Bước 2 — Deploy lên Cloudflare Pages (miễn phí)
+## Bước 2 — Deploy lên Cloudflare (miễn phí)
+
+Repo này đang deploy qua **Workers Builds** (Cloudflare đã gộp Pages vào
+Workers cho dự án mới — không dùng luồng "Create → Pages" cũ nữa):
 
 1. Tạo tài khoản: https://dash.cloudflare.com
-2. Vào **Workers & Pages → Create → Pages → Connect to Git**, chọn repo `blog`.
+2. Vào **Workers & Pages → Create → Workers → Connect to Git**, chọn repo.
 3. Cấu hình build:
    - Framework preset: **Astro**
    - Build command: `npm run build`
    - Output directory: `dist`
-4. Bấm **Save and Deploy**. Sau ~1 phút blog sẽ có địa chỉ dạng `https://blog-xxx.pages.dev`.
+4. Bấm **Save and Deploy**. Blog sẽ có địa chỉ dạng `https://ten-project.ten-tai-khoan.workers.dev`.
 
 Từ đây về sau, mỗi lần `git push` là blog tự cập nhật. Đăng bài = tạo file .md mới + push.
 
+Blog hiện tại: project `astro25072026`, địa chỉ
+`https://astro25072026.tyernguyen.workers.dev`.
+
 ## Bước 3 — Gắn domain riêng (khoản chi duy nhất)
 
-1. Mua domain tại Cloudflare Registrar (giá gốc, rẻ nhất) hoặc Namecheap: ~250–350k/năm cho `.com`.
-2. Trong Cloudflare Pages → project của bạn → **Custom domains → Add**, nhập domain. Cloudflare tự cấu hình DNS và SSL.
-3. Sửa dòng `site:` trong file `astro.config.mjs` thành domain thật, rồi push lại.
+1. Domain đã mua sẵn tại GoDaddy: `tyertrovert.site` (chưa trỏ về Cloudflare).
+2. Trong Cloudflare dashboard → project `astro25072026` → **Settings →
+   Domains & Routes → Custom Domains → Add**, nhập `tyertrovert.site`.
+   Cloudflare sẽ hướng dẫn cập nhật nameserver/DNS bên GoDaddy.
+3. Sửa dòng `site:` trong file `astro.config.mjs` và dòng `Sitemap:` trong
+   `public/robots.txt` thành `https://tyertrovert.site`, rồi push lại.
 
 ## Bước 4 — Cài đo lường hiệu suất (miễn phí)
 
