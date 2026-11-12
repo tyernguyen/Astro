@@ -6,6 +6,21 @@
 
 ---
 
+## 0. Quyết định đã chốt (12/11/2026)
+
+| Hạng mục | Quyết định |
+|---|---|
+| Mục tiêu | Tăng lượt đọc, tăng nhận biết thương hiệu Tyertrovert |
+| Chuyên mục | Thêm **Ô tô**, thay cho **Chuyển đổi** |
+| Mảng ô tô | Được so sánh các hãng, nhưng **không so sánh theo hướng chê bai** |
+| Công cụ hiện có | Cloudflare (đang vận hành blog). Chưa có công cụ SEO |
+| Ngân sách | 200–500k/tháng |
+| Tần suất | 2–3 bài/tuần (1 tin nóng + 1–2 bài giải thích, xem `KHUNG-SEO.md`) |
+| Duyệt cuối | Luân tự duyệt mọi bài trong giai đoạn đầu |
+| Khung SEO | Bản nháp tại [`KHUNG-SEO.md`](./KHUNG-SEO.md) |
+
+---
+
 ## 1. Bức tranh tổng thể
 
 ```mermaid
@@ -148,7 +163,8 @@ Agent tách bài báo VN thành **từng nhận định/con số**, rồi tìm n
 
 - **Đầu vào:** `01-nghien-cuu.json`. Chỉ được dùng thông tin có trong hồ sơ — không tự thêm số liệu "từ trí nhớ".
 - **Đầu ra:** `02-ban-thao.md` đúng format blog hiện tại (frontmatter `title`, `description`, `pubDate`, `category`, `draft`).
-- **Khung SEO:** **[CẦN CHỐT — Luân nói sẽ gửi sau]**. Tạm thời giữ chỗ: tiêu đề có từ khóa chính, đoạn mở trả lời ngay câu hỏi người đọc, các mục H2/H3, phần "Điều này ảnh hưởng gì đến bạn?", nguồn tham khảo cuối bài.
+- **Khung SEO:** theo [`KHUNG-SEO.md`](./KHUNG-SEO.md).
+- **Mảng ô tô:** được so sánh các hãng bằng số liệu (giá, doanh số, thông số), nhưng không dùng lời lẽ chê bai hay hạ thấp hãng nào.
 - **Quy tắc "ai đọc cũng hiểu":**
   - Câu ≤ 25 chữ; mỗi đoạn ≤ 4 câu.
   - Mỗi thuật ngữ lần đầu xuất hiện phải giải thích bằng lời thường (lấy từ `tu_dien_de_hieu`).
